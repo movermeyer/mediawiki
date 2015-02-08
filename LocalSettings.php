@@ -28,9 +28,12 @@ $wgMetaNamespace = "The_Warrior_Wiki";
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
 $wgScriptPath = "";
 $wgScriptExtension = ".php";
+#ShortURL stuff
+$wgArticlePath = "/wiki/$1";
+$wgUsePathInfo = true;
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://45.56.75.24";
+$wgServer = "https://45.56.75.24";
 
 ## The relative URL path to the skins directory
 $wgStylePath = "$wgScriptPath/skins";
@@ -56,7 +59,7 @@ $wgDBtype = "mysql";
 $wgDBserver = getenv("MYSQL_PORT_3306_TCP_ADDR");
 $wgDBname = "warriorwiki";
 $wgDBuser = "root";
-$wgDBpassword = "mysecretpassword";
+$wgDBpassword = getenv("MYSQL_PASSWORD");
 
 # MySQL specific settings
 $wgDBprefix = "";
@@ -99,11 +102,7 @@ $wgShellLocale = "C.UTF-8";
 # Site language code, should be one of the list in ./languages/Names.php
 $wgLanguageCode = "en";
 
-$wgSecretKey = "d81e80284d2115496a87613319bd1fca80ae3921cd7791552679ca0936b5847a";
 
-# Site upgrade key. Must be set to a string (default provided) to turn on the
-# web installer while LocalSettings.php is in place
-$wgUpgradeKey = "6c052246327ed429";
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
@@ -126,4 +125,18 @@ $wgDefaultSkin = "vector";
 # End of automatically generated settings.
 # Add more configuration options below.
 
+#Choose skin to use
 require_once "$IP/skins/Vector/Vector.php";
+
+#TODO:Disable those stupid counters
+
+#Enable Wikibase Repo
+$wgEnableWikibaseRepo = true;
+require_once "$IP/extensions/Wikibase/repo/Wikibase.php";
+require_once "$IP/extensions/Wikibase/repo/ExampleSettings.php";
+
+#Enable Wikibase Client
+$wgEnableWikibaseClient = true;
+require_once "$IP/extensions/Wikibase/client/WikibaseClient.php";
+require_once "$IP/extensions/Wikibase/client/ExampleSettings.php";
+
